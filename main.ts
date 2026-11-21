@@ -21,5 +21,9 @@ const joke =
   "recovery — the bug got a standing ovation, the feature didn't.\n";
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const codePoints = [...joke].length;
+if (codePoints < 1 || codePoints > 280) {
+  throw new Error(`joke is ${codePoints} code points, outside the 1-280 gate`);
+}
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, "entry.txt"), joke, "utf8");
